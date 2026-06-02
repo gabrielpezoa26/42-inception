@@ -1,0 +1,33 @@
+--- SYSTEM ---
+sudo systemctl start docker       # Start the Docker daemon (Linux)
+docker info                       # Verify daemon status and system info
+newgrp docker                     # Apply docker group permissions to current terminal
+
+--- IMAGE MANAGEMENT ---
+docker images                     # List all local images
+docker rmi <image_name>           # Remove a specific image
+docker rmi $(docker images -q)    # Remove ALL local images
+
+--- CONTAINER MANAGEMENT ---
+docker ps                         # List running containers
+docker ps -a                      # List ALL containers (running and stopped)
+docker stop <container_name>      # Gracefully stop a running container
+docker rm <container_name>        # Delete a stopped container
+docker rm -f <container_name>     # Force delete a running container
+
+--- DEBUGGING & INSPECTION ---
+docker logs <container_name>      # Print the logs of a container
+docker logs -f <container_name>   # Follow the live logs of a container
+docker exec -it <container> bash  # Open a live terminal inside a running container
+docker inspect <container_name>   # View all low-level configuration of a container
+
+--- DOCKER-COMPOSE ---
+docker-compose build              # Build or rebuild services
+docker-compose up -d              # Build (if missing), create, and start containers in background
+docker-compose up --build -d      # Force a fresh build and start in background
+docker-compose stop               # Stop containers without removing them or the network
+docker-compose down               # Stop and remove containers, networks, and default volumes
+docker-compose down -v            # Stop, remove containers, networks, AND named volumes
+
+--- CLEANUP (DANGER ZONE) ---	
+docker volume rm $(docker volume ls -q) # Delete all disconnected volumes
