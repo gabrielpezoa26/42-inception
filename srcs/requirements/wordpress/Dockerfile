@@ -3,7 +3,8 @@ FROM debian:bookworm
 RUN apt-get update && apt-get install -y \
     php8.2-fpm \
     php8.2-mysql \
-    curl
+    curl \
+    default-mysql-client
 
 COPY tools/wordpress.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/wordpress.sh

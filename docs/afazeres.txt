@@ -1,9 +1,7 @@
 TODO:
-	-> remover arquivos vazios
-	-> revisar makefile
-	-> senhas wordpress.sh
-	-> testes régua
-
+	-> revisar funcionalidade no geral
+	-> refazer .env campus
+	-> revisar se o .env sumiu msm
 
 
 links:

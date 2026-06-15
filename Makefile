@@ -1,13 +1,16 @@
 COMPOSE_FILE = srcs/docker-compose.yml
-DATA_PATH = /home/gabriel/data
+DATA_PATH = /home/gcesar-n/data
 
 all: up
 
 build:
 	docker-compose -f $(COMPOSE_FILE) build
 
-up: build
+up: build dirs
 	docker-compose -f $(COMPOSE_FILE) up -d
+
+dirs:
+	mkdir -p $(DATA_PATH)/mariadb $(DATA_PATH)/wordpress
 
 stop:
 	docker-compose -f $(COMPOSE_FILE) stop
@@ -26,9 +29,11 @@ start-docker:
 
 fclean: clean
 	docker system prune -af
-	sudo rm -rf $(DATA_PATH)/mariadb/* $(DATA_PATH)/wordpress/*
+	sudo rm -rf $(DATA_PATH)/mariadb $(DATA_PATH)/wordpress
 
 re: fclean all
 
 mariadb:
 	docker-compose -f $(COMPOSE_FILE) up -d --build mariadb
+
+.PHONY: all build up dirs stop down logs clean start-docker fclean re mariadb

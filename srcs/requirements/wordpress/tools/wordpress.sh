@@ -4,7 +4,10 @@ mkdir -p /var/www/html
 cd /var/www/html
 
 if [ ! -f wp-config.php ]; then
-    sleep 12
+
+    until mysqladmin ping -h mariadb -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" --silent 2>/dev/null; do
+        sleep 1
+    done
 
     curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
     chmod +x wp-cli.phar
