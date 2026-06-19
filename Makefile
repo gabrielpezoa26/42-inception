@@ -4,25 +4,25 @@ DATA_PATH = /home/gcesar-n/data
 all: up
 
 build:
-	docker-compose -f $(COMPOSE_FILE) build
+	docker compose -f $(COMPOSE_FILE) build
 
 up: build dirs
-	docker-compose -f $(COMPOSE_FILE) up -d
+	docker compose -f $(COMPOSE_FILE) up -d
 
 dirs:
 	mkdir -p $(DATA_PATH)/mariadb $(DATA_PATH)/wordpress
 
 stop:
-	docker-compose -f $(COMPOSE_FILE) stop
+	docker compose -f $(COMPOSE_FILE) stop
 
 down:
-	docker-compose -f $(COMPOSE_FILE) down
+	docker compose -f $(COMPOSE_FILE) down
 
 logs:
-	docker-compose -f $(COMPOSE_FILE) logs -f
+	docker compose -f $(COMPOSE_FILE) logs -f
 
 clean:
-	docker-compose -f $(COMPOSE_FILE) down --rmi all -v
+	docker compose -f $(COMPOSE_FILE) down --rmi all -v
 
 start-docker:
 	sudo systemctl start docker
