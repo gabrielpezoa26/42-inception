@@ -7,7 +7,6 @@ mkdir -p /run/mysqld
 chown -R mysql:mysql /run/mysqld
 chown -R mysql:mysql /var/lib/mysql
 
-# Check if the database is empty
 if [ ! -d "/var/lib/mysql/mysql" ]; then
     echo "--- DEBUG: First boot detected, initializing database... ---"
     mysql_install_db --user=mysql --datadir=/var/lib/mysql > /dev/null

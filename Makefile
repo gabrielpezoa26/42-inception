@@ -9,23 +9,14 @@ build:
 up: build dirs
 	docker compose -f $(COMPOSE_FILE) up -d
 
-dirs:
-	mkdir -p $(DATA_PATH)/mariadb $(DATA_PATH)/wordpress
-
 stop:
 	docker compose -f $(COMPOSE_FILE) stop
 
 down:
 	docker compose -f $(COMPOSE_FILE) down
 
-logs:
-	docker compose -f $(COMPOSE_FILE) logs -f
-
 clean:
 	docker compose -f $(COMPOSE_FILE) down --rmi all -v
-
-start-docker:
-	sudo systemctl start docker
 
 fclean: clean
 	docker system prune -af
@@ -33,7 +24,20 @@ fclean: clean
 
 re: fclean all
 
-mariadb:
-	docker-compose -f $(COMPOSE_FILE) up -d --build mariadb
+start-docker:
+	sudo systemctl start docker
 
-.PHONY: all build up dirs stop down logs clean start-docker fclean re mariadb
+dirs:
+	mkdir -p $(DATA_PATH)/mariadb $(DATA_PATH)/wordpress
+
+fix-db:
+	docker compose -f $(COMPOSE_FILE) down
+	-docker volume rm mariadb wordpress
+	sudo rm -rf $(DATA_PATH)/mariadb $(DATA_PATH)/wordpress
+	sudo mkdir -p $(DATA_PATH)/mariadb $(DATA_PATH)/wordpress
+	docker compose -f $(COMPOSE_FILE) build --no-cache mariadb
+	make up
+
+check-data:
+	ls -la /home/gcesar-n/data/mariadb
+	ls -la /home/gcesar-n/data/wordpress
