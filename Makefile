@@ -28,7 +28,10 @@ start-docker:
 	sudo systemctl start docker
 
 dirs:
-	mkdir -p $(DATA_PATH)/mariadb $(DATA_PATH)/wordpress
+	sudo mkdir -p $(DATA_PATH)/mariadb $(DATA_PATH)/wordpress
+
+prune:
+	docker system prune -af --volumes
 
 fix-db:
 	docker compose -f $(COMPOSE_FILE) down
