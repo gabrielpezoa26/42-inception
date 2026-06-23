@@ -27,5 +27,12 @@ if [ ! -f wp-config.php ]; then
     echo "--- DEBUG: WP Setup Complete! ---"
 fi
 
+#configure external nginx port
+wp option update home 'https://gcesar-n.42.fr' --allow-root
+wp option update siteurl 'https://gcesar-n.42.fr' --allow-root
+
+# configure internal wordpress port
+# sed -i 's/listen = 9000/listen = 8080/g' /etc/php/8.2/fpm/pool.d/www.conf
+
 echo "--- DEBUG: Starting PHP-FPM ---"
 exec php-fpm8.2 -F
