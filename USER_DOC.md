@@ -25,7 +25,7 @@ make clean  # stop, remove containers and delete data volumes
 
 All credentials are stored in the `.env`. file
 
-Do not commit this file to Git.
+Do not commit this file to Git
 
 ## Checking Services
 
