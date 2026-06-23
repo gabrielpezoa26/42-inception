@@ -22,4 +22,4 @@ https://www.youtube.com/watch?v=DQdB7wFEygo&t=477s
 
 https://www.youtube.com/watch?v=DdoncfOdru8
 
-* AI was used mainly for understanding Docker/Linux specific errors, helping with learning Docker commands and debugging.
+* AI was used mainly for understanding Docker/Linux specific errors, helping with learning Docker commands, shell syntax and debugging.
