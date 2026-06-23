@@ -21,8 +21,8 @@ FLUSH PRIVILEGES;
 EOF
 
     echo "--- DEBUG: Starting MariaDB with init file (PID 1) ---"
-    exec mysqld --user=mysql --init-file=/tmp/init.sql
+    exec mysqld --user=mysql --init-file=/tmp/init.sql  #--port=3307
 else
     echo "--- DEBUG: Database already exists, starting normally (PID 1) ---"
-    exec mysqld --user=mysql
+    exec mysqld --user=mysql  #--port=3307
 fi
